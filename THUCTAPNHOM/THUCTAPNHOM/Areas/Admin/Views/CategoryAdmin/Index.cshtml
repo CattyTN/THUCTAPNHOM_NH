@@ -1,0 +1,177 @@
+﻿@model List<THUCTAPNHOM.Models2.CATEGORY>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row m-t-30">
+    <div class=" col-sm-12 col-md-12 col-lg-12">
+        <!-- USER DATA-->
+        <div class="user-data col-sm-12 col-md-12 col-lg-12 m-b-30">
+            <h3 class="title-3 text-center m-b-30">
+                <i class="zmdi zmdi-account-calendar"></i>Danh Mục Sản Phẩm
+            </h3>
+            <div class="table-data__tool">
+                <div class="table-data__tool-left">
+                    <div class="rs-select2--light rs-select2--md">
+                        <select class="js-select2" name="property">
+                            <option selected="selected">Loại sản phẩm</option>
+                            <option value="1">Trang Sức</option>
+                            <option value="2">Đồ Da</option>
+                        </select>
+                        <div class="dropDownSelect2"></div>
+                    </div>
+                    <button class="au-btn-filter">
+                        <i class="zmdi zmdi-filter-list"></i>Lọc
+                    </button>
+                </div>
+                <div class="table-data__tool-right">
+                    @using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+                    {
+                        <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Thêm danh mục sản phẩm</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="category" class=" form-control-label">Tên danh mục</label>
+                                            <input type="text" id="category" name="category" placeholder="Nhập tên danh mục" class="form-control">
+                                        </div>
+                                        <div class="rs-select2--light rs-select2--md">
+                                            <select class="js-select2" name="group_id">
+                                                <option selected="selected">Loại sản phẩm</option>
+                                                <option value="1">Trang Sức</option>
+                                                <option value="2">Đồ Da</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Thêm danh mục</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#exampleModal">
+                        <i class="zmdi zmdi-plus"></i>Thêm danh mục sản phẩm
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive table-responsive-data2">
+                <table class="table table-data2">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Tên danh mục</th>                            
+                            <th>Nhóm sản phẩm</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="spacer"></tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="spacer"></tr>
+                            <tr class="tr-shadow">
+                                <td> </td>
+                                <td>@item.category_id</td>
+                                <td>@item.name</td>
+                                @if (item.group_id == 1)
+                                {
+                                    <td>Trang Sức</td>
+                                }
+                                else
+                                {
+                                    <td>Đồ Da</td>
+                                }
+                                <td>
+                                    <div class="table-data-feature">
+                                        @using (Html.BeginForm("EditCategory", "Category", FormMethod.Post))
+                                        {
+                                            <div id="editcategory" class="modal" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Edit Category ID @item.category_id</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label for="tran_id" class=" form-control-label">Transaction ID</label>
+                                                                <input type="text" id="tran_id" name="tran_id" placeholder="@item.category_id" disabled="" class="form-control">
+                                                                @{ TempData["category_id"] = item.category_id;}
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="name" class=" form-control-label">Name</label>
+                                                                <input type="text" id="name" name="name" placeholder="@item.name" class="form-control">
+                                                            </div>
+                                                            <div class="rs-select2--light rs-select2--md">
+                                                                <select class="js-select2" name="group_id">
+                                                                    <option selected="selected">All Properties</option>
+                                                                    <option value="1">Trang Sức</option>
+                                                                    <option value="2">Đồ Da</option>
+                                                                </select>
+                                                                <div class="dropDownSelect2"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        <button class="item" data-toggle="modal" data-target="" data-placement="top" title="Edit">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </button>
+                                        @using (Html.BeginForm("DeleteCategory", "Category", FormMethod.Post))
+                                        {
+                                        <div id="deletecategory" class="modal" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Cảnh báo!</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="tran_id" class=" form-control-label">Xóa danh mục: @item.name</label>                                                            
+                                                            @{ TempData["category_id"] = item.category_id;}
+                                                        </div>                                                        
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+                                        <button class="item" data-toggle="modal" data-target="#deletecategory" data-placement="top" title="Delete">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

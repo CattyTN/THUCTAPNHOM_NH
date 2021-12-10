@@ -1,0 +1,244 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Areas/Sales/Views/Shared/_Layout.cshtml";
+}
+
+<body class="page-template belle">
+    <div class="pageWrapper">
+        <!--Search Form Drawer-->
+        <div class="search">
+            <div class="search__form">
+                <form class="search-bar__form" action="#">
+                    <button class="go-btn search__button" type="submit"><i class="icon anm anm-search-l"></i></button>
+                    <input class="search__input" type="search" name="q" value="" placeholder="Search entire store..." aria-label="Search" autocomplete="off">
+                </form>
+                <button type="button" class="search-trigger close-btn"><i class="icon anm anm-times-l"></i></button>
+            </div>
+        </div>
+        <!--End Search Form Drawer-->
+        <!--Body Content-->
+        <div id="page-content">
+            <!--Page Title-->
+            <div class="page section-header text-center">
+                <div class="page-title">
+                    <div class="wrapper"><h1 class="page-width">Thanh toán</h1></div>
+                </div>
+            </div>
+            <!--End Page Title-->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                        <div class="customer-box returning-customer">
+                            <h3><i class="icon anm anm-user-al"></i> Thông tin khách hàng </h3>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                        <div class="customer-box customer-coupon">
+                            <h3 class="font-15 xs-font-13"><i class="icon anm anm-gift-l"></i> Thông tin giỏ hàng</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row billing-fields">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+                        <div class="create-ac-content bg-light-gray padding-20px-all">
+                            <form>
+                                <fieldset>
+                                    <h2 class="login-title mb-3">Thông tin chi tiết hóa đơn</h2>
+                                    <div class="row">
+                                        <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                                            <label for="input-firstname">Địa chỉ nhận hàng <a href="#customer-login" id="customer" data-toggle="collapse">Thêm địa chỉ mới</a></label>
+                                            <input name="firstname" value="Day hien thi dia chi mac dinh dau tien" id="input-firstname" type="text">
+                                        </div>
+
+                                    </div>
+                                    <div id="customer-login" class="collapse customer-content">
+                                        <div class="customer-info">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                        <label for="exampleInputEmail1">Họ và tên </label>
+                                                        <input type="email" class="no-margin" id="exampleInputEmail1">
+                                                    </div>
+                                                    <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                        <label for="exampleInputPassword1">Số điện thoại</label>
+                                                        <input type="password" id="exampleInputPassword1">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                <label for="input-country">Tỉnh, Thành phố <span class="required-f">*</span></label>
+                                                <select name="country_id" id="input-country">
+                                                    <option value=""> --- Chọn --- </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                <label for="input-country">Quận, huyện <span class="required-f">*</span></label>
+                                                <select name="country_id" id="input-country">
+                                                    <option value=""> --- Chọn --- </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                                                <label for="input-firstname">Địa chỉ nhận hàng cụ thể</label>
+                                                <input name="firstname" value="" id="input-firstname" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row add_btn">
+                                            <p class="input-group__btn add_btn">
+                                                <button type="submit" class="btn newsletter__submit" id="Subscribe"><span class="newsletter__submit-text--large">Thêm địa chỉ</span></button>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                                            <label for="input-company">Lời nhắn cho người bán <span class="required-f">*</span></label>
+                                            <textarea class="form-control resize-both" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <!--Bawts dau bang san pham-->
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <table>
+                            <thead class="cart__row cart__header">
+                                <tr>
+                                    <th colspan="2" class="text-center">Sản phẩm</th>
+                                    <th class="text-center">Giá tiền</th>
+                                    <th class="text-center">Số tiền</th>
+                                    <th class="text-right">Tổng tiền</th>
+                                    <th class="action">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="cart__row border-bottom line1 cart-flex border-top">
+                                    <td class="cart__image-wrapper cart-flex-item">
+                                        <ul class="swatches">
+                                            <li class="swatch medium rounded"><img src="assets/images/product-images/variant1.jpg" alt="image" /></li>
+                                        </ul>
+                                    </td>
+                                    <td class="cart__meta small--text-left cart-flex-item">
+                                        <div class="list-view-item__title">
+                                            <a href="#">Elastic Waist Dress </a>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price-wrapper cart-flex-item">
+                                        <span class="money">$735.00</span>
+                                    </td>
+                                    <td class="cart__update-wrapper cart-flex-item text-right">
+                                        <div class="cart__qty text-center">
+                                            <div class="qtyField">
+                                                <p class="cart__qty-input qty"> 1</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right small--hide cart-price">
+                                        <div><span class="money">$735.00</span></div>
+                                    </td>
+                                </tr>
+                                </br>
+                                <tr class="cart__row border-bottom line1 cart-flex border-top">
+                                    <td class="cart__image-wrapper cart-flex-item">
+                                        <ul class="swatches">
+                                            <li class="swatch medium rounded"><img src="assets/images/product-images/variant1.jpg" alt="image" /></li>
+                                        </ul>
+                                    </td>
+                                    <td class="cart__meta small--text-left cart-flex-item">
+                                        <div class="list-view-item__title">
+                                            <a href="#">Elastic Waist Dress </a>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price-wrapper cart-flex-item">
+                                        <span class="money">$735.00</span>
+                                    </td>
+                                    <td class="cart__update-wrapper cart-flex-item text-right">
+                                        <div class="cart__qty text-center">
+                                            <div class="qtyField">
+                                                <p class="cart__qty-input qty"> 1</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right small--hide cart-price">
+                                        <div><span class="money">$735.00</span></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tfoot>
+
+
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!--Ket thuc bang san pham-->
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                        <div class="customer-box returning-customer">
+                            <h3><i class="icon anm anm-user-al"></i> Thông tin thanh toán </h3>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                        <div class="customer-box returning-customer">
+                            <div class="area_mua_hang text-center">
+                                <div>
+                                    <input type="button" name="checkout" id="cartCheckout" class="btn btn--small-wide checkout" value="Thanh toán">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row billing-fields">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-right">
+                                    <button type="button" name="clear" class="btn btn-secondary btn--small  small--hide"><a href="#payment_info1" id="customer" data-toggle="collapse"><span class="text-white">Thanh toán khi nhận hàng</span> </a></button>
+                                    <button type="button" name="clear" class="btn btn-secondary btn--small  small--hide"><a href="#payment_info2" id="customer" data-toggle="collapse"><span class="text-white">Thanh toán online</span> </a></button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <div id="payment_info1" class="collapse customer-content">
+                            <div class="customer-info">
+                                </br>
+                                Thanh toán khi nhận hàng, phí thu hộ: 0đ
+                            </div>
+                        </div>
+                        <div id="payment_info2" class="collapse customer-content">
+                            <div class="customer-info">
+                                <form>
+                                    </br>
+                                    <div class="row">
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                            <label for="exampleInputEmail1">Số tài khoản </label>
+                                            <input type="email" class="no-margin" id="exampleInputEmail1">
+                                        </div>
+                                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                            <label for="exampleInputPassword1">Mã OTP</label>
+                                            <input type="password" id="exampleInputPassword1">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Body Content-->
+    </div>
+</body>
+
+

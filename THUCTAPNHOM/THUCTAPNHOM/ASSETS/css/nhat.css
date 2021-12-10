@@ -1,0 +1,138 @@
+﻿body {
+}
+.price_fillter {
+    justify-content: flex-start;
+}
+
+.area1_price_fillter{
+    width: 45%;
+    display:block;
+}
+.area2_price_fillter {
+    width: 45%;
+    display: block;
+}
+.abcde {
+    height: 100px;
+    width: 100%;
+    background-color: red;
+    font-size:25px;
+}
+
+.div_before_filter{
+    width: 20px;
+    height:30px;
+    background-color: red;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container_nhat {
+    background-color: rgb(255, 255, 255);
+    display: block;
+    height: 900px;
+}
+
+.area1 {
+    margin-top: 20px;
+    width: 100%;
+    height: 120px;
+    background-color: white;
+}
+
+.area1_1 {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    margin-top: 30px;
+    text-align: center;
+    align-items: center;
+}
+
+.area1_1_text {
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+.area1_1_2 {
+    width: 100%;
+    margin-top: 30px;
+    background-color: white;
+    font-size: 20px;
+}
+
+.area2 {
+    margin-top: 20px;
+    width: 100%;
+    height: 500px;
+    background-color: rgb(255, 255, 255);
+}
+
+.area2_2 {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.area1_2_text {
+    margin-left: 30px;
+    font-size: 15px;
+    margin-right: 250px;
+}
+
+.area2_2_2 {
+    background-color: rgb(255, 255, 255);
+    width: 20%;
+    height: 100%;
+}
+
+.area3 {
+    margin-top: 20px;
+    width: 100%;
+    height: 500px;
+    background-color: rgb(255, 255, 255);
+}
+
+.area3_1 {
+    background-color: rgb(240, 233, 236);
+    height: 70%;
+    display: block;
+    align-items: center;
+}
+
+.area3_1_1 {
+    height: 30%;
+}
+
+.area3_1_2 {
+    height: 70%;
+}
+
+.area3_2 {
+    background-color: khaki;
+    height: 30%;
+}
+
+.add_btn {
+    text-align: right;
+    display: block;
+    margin-right: 0px;
+}
+
+.payment_area {
+    background-color: grey;
+}
+
+.area_mua_hang {
+    width: 40%;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+}

@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Sales/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="acor-ttl" rel="tab2">Khiếu nại</h3>
+<div id="tab2" class="tab-content">
+    <div id="shopify-product-reviews">
+        <div class="spr-container">
+            <div class="spr-content">
+                <div class="spr-form clearfix">
+                    <form method="get" action="/Home/Index" id="new-review-form" class="new-review-form">
+                        <h3 class="spr-form-title">Viết khiếu nại</h3>
+                        <fieldset class="spr-form-review">
+                            <div class="spr-form-review-title">
+                                <label class="spr-form-label" for="review_title_10508262282">Tiêu đề</label>
+                                <input class="spr-form-input spr-form-input-text " id="review_title_10508262282" type="text" name="review[title]" value="" placeholder="Viết tiêu đề">
+                            </div>
+                            <div class="spr-form-review-body">
+                                <label class="spr-form-label" for="review_body_10508262282">Nội dung khiếu nại <span class="spr-form-review-body-charactersremaining">(1500)</span></label>
+                                <div class="spr-form-input">
+                                    <textarea class="spr-form-input spr-form-input-textarea " id="review_body_10508262282" data-product-id="10508262282" name="review[body]" rows="10" placeholder="Viết nội dung của bạn ở đây"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="spr-form-actions">
+                            <input type="submit" class="spr-button spr-button-primary button button-primary btn btn-primary" value="Gửi đến quản lý hệ thống">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+</button>
+<a href="#exampleModal" data-toggle="modal">Goto modal</a>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+

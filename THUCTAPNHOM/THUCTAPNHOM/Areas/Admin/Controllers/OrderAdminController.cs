@@ -51,19 +51,19 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Filter(FormCollection fc)
+        public ActionResult Filter_Order()
         {
-            var type = new SqlParameter("@type", fc["type"]);
-            if (type.Value.ToString() == "3")
+            var order_status = Request.Form["order_property"];
+            List<TRANSACTION> order_list = new List<TRANSACTION>();
+            var all_transaction = db.TRANSACTIONs.ToList();
+            foreach (var a in all_transaction)
             {
-                var result = db.TRANSACTIONs.ToList();
-                return View("Index", result);
+                if (a.status.ToString().Trim() == order_status.Trim())
+                {
+                    order_list.Add(a);
+                }
             }
-            else
-            {
-                var result = db.TRANSACTIONs.SqlQuery("FilterTransaction @type", type).ToList();
-                return View("~/Areas/Admin/Views/Order/Index.cshtml", result);
-            }
+            return View("Index", order_list);
         }
     }
 }

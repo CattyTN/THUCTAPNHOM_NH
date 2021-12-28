@@ -26,11 +26,10 @@
                 <i class="zmdi zmdi-account-calendar"></i>Giao dịch
             </h3>
             <div class="table-data__tool">
-                @using (Html.BeginForm("Filter", "Order", FormMethod.Post))
-                {
+                <form action="/Admin/OrderAdmin/Filter_Order" method="post">
                     <div class="table-data__tool-left">
                         <div class="rs-select2--light rs-select2--md">
-                            <select class="js-select2" name="type">
+                            <select class="js-select2" name="order_property">
                                 <option selected="selected" value="3">Phân loại</option>
                                 <option value="0">Chờ xử lí</option>
                                 <option value="1">Đang xử lý</option>
@@ -38,11 +37,11 @@
                             </select>
                             <div class="dropDownSelect2"></div>
                         </div>
-                        <button class="au-btn-filter">
-                            <i class="zmdi zmdi-filter-list"></i>Lọc
+                        <button id="filter_order_button" class="au-btn-filter">
+                            <input type="submit" value="Lọc" />
                         </button>
                     </div>
-                }
+                </form>
 
             </div>
             <div class="table-responsive table-responsive-data2">
@@ -53,7 +52,7 @@
                             <th>Mã giao dịch</th>
                             <th>Mã khách hàng</th>
                             <th>Tên</th>
-                            <th>Amount</th>
+                            <th>Giá trị</th>
                             <th>Địa chỉ giao hàng</th>
                             <th>SĐT</th>
                             <th>Phương thức thanh toán</th>
@@ -89,8 +88,7 @@
                                 </td>
                                 <td>
                                     <div class="table-data-feature">
-                                        @using (Html.BeginForm("AddReport", "Order", FormMethod.Post))
-                                        {
+                                        <form action="/Admin/Order/AddReport" method="post">
                                             <div id="addreport" class="modal" tabindex="-1" role="dialog">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -133,13 +131,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        }
+                                        </form>
                                         <button class="item" data-toggle="modal" data-target="#addreport" data-placement="top" title="Report">
                                             <i class="zmdi zmdi-archive"></i>
                                         </button>
-
-                                        @using (Html.BeginForm("EditOrder", "Order", FormMethod.Post))
-                                        {
+                                        <form action="/Admin/Order/EditOrder" method="post">
                                             <div id="editorder" class="modal" tabindex="-1" role="dialog">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -161,7 +157,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        }
+                                        </form>
                                         <button class="item" data-toggle="modal" data-placement="top" title="Edit" data-target="#editorder">
                                             <i class="zmdi zmdi-edit"></i>
                                             @{TempData["Tran_ID"] = item.transaction_id; }

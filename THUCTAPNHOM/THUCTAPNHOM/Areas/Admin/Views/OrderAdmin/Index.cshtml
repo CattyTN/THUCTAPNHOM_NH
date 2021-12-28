@@ -51,14 +51,12 @@
                         <tr>
                             <th></th>
                             <th>Mã giao dịch</th>
-                            <th>MÃ khách hàng</th>
-                            <th>Tên khách hàng</th>
-                            <th>Mã sản phẩm</th>
+                            <th>Mã khách hàng</th>
+                            <th>Tên</th>
                             <th>Amount</th>
                             <th>Địa chỉ giao hàng</th>
-                            <th>Số điện thoại</th>
+                            <th>SĐT</th>
                             <th>Phương thức thanh toán</th>
-                            <th>Qty</th>
                             <th>Tình trạng</th>
                             <th></th>
                         </tr>
@@ -75,7 +73,6 @@
                                 <td>@item.delivery</td>
                                 <td>@item.member_phone_number</td>
                                 <td>@item.payment</td>
-                                <td>@item.qty</td>
                                 <td>
                                     @if (item.status == 0)
                                     {
@@ -119,11 +116,7 @@
                                                                 <input type="number" id="amount" name="amount" placeholder="@item.amount" disabled="" class="form-control">
                                                                 @{ TempData["amount"] = item.amount;}
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label for="qty" class=" form-control-label">QTY</label>
-                                                                <input type="text" id="qty" name="qty" placeholder="@item.qty" disabled="" class="form-control">
-                                                                @{ TempData["qty"] = item.qty;}
-                                                            </div>
+
                                                             <div class="form-group">
                                                                 <label for="date" class="form-control-label">Ngày báo cáo</label>
                                                                 <input type="date" id="date" name="date" placeholder="@DateTime.Now" class="form-control" />

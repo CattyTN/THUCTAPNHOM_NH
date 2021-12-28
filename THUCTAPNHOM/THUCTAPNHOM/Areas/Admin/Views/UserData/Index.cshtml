@@ -11,21 +11,21 @@
             <h3 class="title-3 text-center m-b-30">
                 <i class="zmdi zmdi-account-calendar"></i>Dữ Liệu Người Dùng
             </h3>
-            <div class="table-data__tool">
+            <form action="/Admin/UserData/Filter_Member" class="table-data__tool" method="post">
                 <div class="table-data__tool-left">
                     <div class="rs-select2--light rs-select2--md">
-                        <select class="js-select2" name="property">
+                        <select class="js-select2" name="member_property">
                             <option selected="selected">Phân loại</option>
-                            <option value="">Người dùng</option>
-                            <option value="">Nhân viên</option>
+                            <option value="2">Người dùng</option>
+                            <option value="1">Nhân viên</option>
                         </select>
                         <div class="dropDownSelect2"></div>
-                    </div>             
+                    </div> 
                     <button id="filter_member_button" class="au-btn-filter">
-                        <i class="zmdi zmdi-filter-list"></i>Lọc
+                        <input type="submit" value="Lọc"/>
                     </button>
                 </div>                
-            </div>
+            </form>
             <div class="table-responsive table-data">
                 <table class="table">
                     <thead>

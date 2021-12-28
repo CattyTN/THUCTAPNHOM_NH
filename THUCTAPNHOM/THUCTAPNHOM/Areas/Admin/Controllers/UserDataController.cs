@@ -44,9 +44,18 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
             return View("UserInfor");
         }
 
-        public ActionResult Filter_Member(string job)
+        public ActionResult Filter_Member()
         {
-            return Content("hello");
+            var job = Request.Form["member_property"];
+            List<MEMBER> member_list = new List<MEMBER>();
+            var all_member = db.MEMBERs.ToList();
+            foreach(var a in all_member)
+            {
+                if(a.role.ToString().Trim() == job.Trim()){
+                    member_list.Add(a);
+                }
+            }
+            return View("Index", member_list);
         }
     }
 }

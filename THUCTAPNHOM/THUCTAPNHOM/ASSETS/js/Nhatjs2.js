@@ -365,7 +365,7 @@ function number_minicart_edit() {
     }
 
 }
-
+/*
 function Filter_Member_Button_Click() {
     var e = document.getElementById("filter_member_button")
     if (e != null) {
@@ -373,7 +373,7 @@ function Filter_Member_Button_Click() {
             $.ajax({
                 type: "GET",
                 data: {
-                    job: "1"
+                    job: "nhat",
                 },
                 url: "/UserData/Filter_Member",
                 success: function (e) {
@@ -386,4 +386,4 @@ function Filter_Member_Button_Click() {
 
 window.addEventListener('load', function () {
     Filter_Member_Button_Click()
-})
+})*/

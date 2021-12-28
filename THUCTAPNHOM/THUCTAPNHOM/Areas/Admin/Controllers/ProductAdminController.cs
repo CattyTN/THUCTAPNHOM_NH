@@ -43,7 +43,7 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
                 {
                     if (file != null)
                     {
-                        path = Path.Combine(Server.MapPath("/ASSETS/assets/images/product-images/"), Path.GetFileName(file.FileName));
+                        path = Path.Combine(Server.MapPath("/ASSETS/images/product-images/"), Path.GetFileName(file.FileName));
                         file.SaveAs(path);
                     }
                 }

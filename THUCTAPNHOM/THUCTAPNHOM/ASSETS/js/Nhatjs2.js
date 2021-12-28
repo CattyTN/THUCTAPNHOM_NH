@@ -274,10 +274,10 @@ function count_all_amount_after_plus() {
 
 // Subcriber
 window.addEventListener('load', function () {
-    mua_hang_click()
+    dieukhoan_click()
 })
 
-function mua_hang_click() {
+function dieukhoan_click() {
     $(document).ready(function () {
         $("#dieukhoan_checkbox").click(function () {
             if ($("#dieukhoan_checkbox").is(":checked")) {
@@ -298,64 +298,92 @@ window.addEventListener('load', function () {
 
 function button_review_click() {
     var e = document.getElementById("review_button")
-    e.addEventListener('click', function () {
-        var str = e.name
-        var arr = str.split(",")
-        var product_id = arr[0]
-        var username = arr[1]
-        $.ajax({
-            type: "GET",
-            data: {
-                product_id: product_id,
-                username: username
-            },
-            url: "/Product/Add_Review_Check",
-            success: function (e) {
-                if (e == "1") {
-                    var input_e = document.getElementById("review_body_10508262282")
-                    var input_content = input_e.value
-                    input_e.value = "";
-                    $.ajax({
-                        type: "GET",
-                        data: {
-                            review: input_content,
-                            product_id: product_id,
-                            username: username
-                        },
-                        url: "/Product/Add_Review",
-                        success: function (e) {
-                            alert("Review của bạn sẽ được xét duyệt để đăng tải!!!")
-                        }
-                    })
+    if (e != null) {
+        e.addEventListener('click', function () {
+            var str = e.name
+            var arr = str.split(",")
+            var product_id = arr[0]
+            var username = arr[1]
+            $.ajax({
+                type: "GET",
+                data: {
+                    product_id: product_id,
+                    username: username
+                },
+                url: "/Product/Add_Review_Check",
+                success: function (e) {
+                    if (e == "1") {
+                        var input_e = document.getElementById("review_body_10508262282")
+                        var input_content = input_e.value
+                        input_e.value = "";
+                        $.ajax({
+                            type: "GET",
+                            data: {
+                                review: input_content,
+                                product_id: product_id,
+                                username: username
+                            },
+                            url: "/Product/Add_Review",
+                            success: function (e) {
+                                alert("Review của bạn sẽ được xét duyệt để đăng tải!!!")
+                            }
+                        })
+                    }
+                    else {
+                        alert("Bạn chưa mua sản phẩm, không thể đăng Review!!!")
+                    }
                 }
-                else {
-                    alert("Bạn chưa mua sản phẩm, không thể đăng Review!!!")
-                }
-            }
+            })
         })
-    })
+    }
+
 }
 
 
 // Number of Minicart
 window.addEventListener('load', function () {
     number_minicart_edit()
+    // Theem su kien cho button mua hàng
 })
 
 function number_minicart_edit() {
     var number = 0;
     var e = document.getElementById("hidden_div_id")
-    var user = e.innerHTML
-    console.log(user)
-    $.ajax({
-        type: "GET",
-        data: {
-            username: user,
-        },
-        url: "/Cart/Number_For_MiniCart",
-        success: function (e) {
-            var e2 = document.getElementById("CartCount")
-            e2.innerHTML = e
-        }
-    })
+    if (e != null) {
+        var user = e.innerHTML
+        $.ajax({
+            type: "GET",
+            data: {
+                username: user,
+            },
+            url: "/Cart/Number_For_MiniCart",
+            success: function (e) {
+                var e2 = document.getElementById("CartCount")
+                e2.innerHTML = e
+            }
+        })
+    }
+
 }
+
+function Filter_Member_Button_Click() {
+    var e = document.getElementById("filter_member_button")
+    if (e != null) {
+        e.addEventListener('click', function () {
+            $.ajax({
+                type: "GET",
+                data: {
+                    job: "1"
+                },
+                url: "/UserData/Filter_Member",
+                success: function (e) {
+                    console.log(e)
+                }
+            })
+        })
+    }
+}
+
+window.addEventListener('load', function () {
+    Filter_Member_Button_Click()
+})

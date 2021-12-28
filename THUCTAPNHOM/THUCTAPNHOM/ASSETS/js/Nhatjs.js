@@ -298,42 +298,45 @@ window.addEventListener('load', function () {
 
 function button_review_click() {
     var e = document.getElementById("review_button")
-    e.addEventListener('click', function () {
-        var str = e.name
-        var arr = str.split(",")
-        var product_id = arr[0]
-        var username = arr[1]
-        $.ajax({
-            type: "GET",
-            data: {
-                product_id: product_id,
-                username: username
-            },
-            url: "/Product/Add_Review_Check",
-            success: function (e) {
-                if (e == "1") {
-                    var input_e = document.getElementById("review_body_10508262282")
-                    var input_content = input_e.value
-                    input_e.value = "";
-                    $.ajax({
-                        type: "GET",
-                        data: {
-                            review: input_content,
-                            product_id: product_id,
-                            username: username
-                        },
-                        url: "/Product/Add_Review",
-                        success: function (e) {
-                            alert("Review của bạn sẽ được xét duyệt để đăng tải!!!")
-                        }
-                    })
+    if (e != null) {
+        e.addEventListener('click', function () {
+            var str = e.name
+            var arr = str.split(",")
+            var product_id = arr[0]
+            var username = arr[1]
+            $.ajax({
+                type: "GET",
+                data: {
+                    product_id: product_id,
+                    username: username
+                },
+                url: "/Product/Add_Review_Check",
+                success: function (e) {
+                    if (e == "1") {
+                        var input_e = document.getElementById("review_body_10508262282")
+                        var input_content = input_e.value
+                        input_e.value = "";
+                        $.ajax({
+                            type: "GET",
+                            data: {
+                                review: input_content,
+                                product_id: product_id,
+                                username: username
+                            },
+                            url: "/Product/Add_Review",
+                            success: function (e) {
+                                alert("Review của bạn sẽ được xét duyệt để đăng tải!!!")
+                            }
+                        })
+                    }
+                    else {
+                        alert("Bạn chưa mua sản phẩm, không thể đăng Review!!!")
+                    }
                 }
-                else {
-                    alert("Bạn chưa mua sản phẩm, không thể đăng Review!!!")
-                }
-            }
+            })
         })
-    })
+    }
+
 }
 
 
@@ -361,3 +364,17 @@ function number_minicart_edit() {
     })
 }
 
+
+$(document).ready(function () {
+    $("#filter_member_button").click(function () {
+        Filter_Member_Button_Click()
+    })
+})
+
+function Filter_Member_Button_Click() {
+    console.log("a")
+}
+
+window.addEventListener('load', function () {
+    this.alert("sdsdsd")
+})

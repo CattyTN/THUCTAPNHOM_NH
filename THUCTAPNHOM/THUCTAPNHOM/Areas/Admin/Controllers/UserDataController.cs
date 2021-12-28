@@ -43,5 +43,10 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
             db.Database.ExecuteSqlCommand("UpdateMember @id, @password, @phone, @address", id, password, phone, address);
             return View("UserInfor");
         }
+
+        public ActionResult Filter_Member(string job)
+        {
+            return Content("hello");
+        }
     }
 }

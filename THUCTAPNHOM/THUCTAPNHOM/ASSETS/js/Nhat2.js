@@ -387,3 +387,30 @@ function Filter_Member_Button_Click() {
 window.addEventListener('load', function () {
     Filter_Member_Button_Click()
 })*/
+
+
+// Ham xu li xac nhan don hang
+
+window.addEventListener('load', function () {
+    confirm_button_click()
+})
+
+function confirm_button_click() {
+    var e = document.getElementById("confirm_button_id")
+    var tran_id = e.value;
+    e.addEventListener('click', function () {
+        order_confirm(tran_id)
+    })
+}
+
+
+function order_confirm(tran_id) {
+    $.ajax({
+        type: "GET",
+        data: { id: tran_id },
+        url: "/Admin/OrderAdmin/Confirm_Order",
+        success: function (e) {
+            console.log("Chấp nhận đơn hàng!! Đơn sẽ được giao cho bên vận chuyển")
+        }
+    })
+}

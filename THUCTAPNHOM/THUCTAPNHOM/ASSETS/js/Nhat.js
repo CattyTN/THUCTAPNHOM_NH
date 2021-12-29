@@ -349,32 +349,68 @@ window.addEventListener('load', function () {
 function number_minicart_edit() {
     var number = 0;
     var e = document.getElementById("hidden_div_id")
-    var user = e.innerHTML
-    console.log(user)
-    $.ajax({
-        type: "GET",
-        data: {
-            username: user,
-        },
-        url: "/Cart/Number_For_MiniCart",
-        success: function (e) {
-            var e2 = document.getElementById("CartCount")
-            e2.innerHTML = e
-        }
-    })
+    if (e != null) {
+        var user = e.innerHTML
+        $.ajax({
+            type: "GET",
+            data: {
+                username: user,
+            },
+            url: "/Cart/Number_For_MiniCart",
+            success: function (e) {
+                var e2 = document.getElementById("CartCount")
+                e2.innerHTML = e
+            }
+        })
+    }
+
 }
-
-
-$(document).ready(function () {
-    $("#filter_member_button").click(function () {
-        Filter_Member_Button_Click()
-    })
-})
-
+/*
 function Filter_Member_Button_Click() {
-    console.log("a")
+    var e = document.getElementById("filter_member_button")
+    if (e != null) {
+        e.addEventListener('click', function () {
+            $.ajax({
+                type: "GET",
+                data: {
+                    job: "nhat",
+                },
+                url: "/UserData/Filter_Member",
+                success: function (e) {
+                    console.log(e)
+                }
+            })
+        })
+    }
 }
 
 window.addEventListener('load', function () {
-    this.alert("sdsdsd")
+    Filter_Member_Button_Click()
+})*/
+
+
+// Ham xu li xac nhan don hang
+
+window.addEventListener('load', function () {
+    confirm_button_click()
 })
+
+function confirm_button_click() {
+    var e = document.getElementById("confirm_button_id")
+    var tran_id = e.value;
+    e.addEventListener('click', function () {
+        order_confirm(tran_id)
+    })
+}
+
+
+function order_confirm(tran_id) {
+        $.ajax({
+            type: "GET",
+            data: { id: tran_id },
+            url: "/Admin/OrderAdmin/Confirm_Order",
+            success: function (e) {
+                console.log(e)
+            }
+        })
+}

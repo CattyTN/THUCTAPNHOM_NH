@@ -27,6 +27,7 @@ namespace THUCTAPNHOM.Models2
 
         public virtual DbSet<ITEM_SOLD> ITEM_SOLDs { get; set; }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CATEGORY>()
@@ -72,4 +73,5 @@ namespace THUCTAPNHOM.Models2
                 .IsUnicode(false);
         }
     }
+
 }

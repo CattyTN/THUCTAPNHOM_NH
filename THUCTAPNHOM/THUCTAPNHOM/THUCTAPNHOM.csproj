@@ -156,6 +156,7 @@
     <Compile Include="Models2\ItemInCart.cs" />
     <Compile Include="Models2\ITEM_SOLD.cs" />
     <Compile Include="Models2\MEMBER.cs" />
+    <Compile Include="Models2\Order_Products.cs" />
     <Compile Include="Models2\PRODUCT.cs" />
     <Compile Include="Models2\PRODUCT_GROUP.cs" />
     <Compile Include="Models2\PRODUCT_Plus.cs" />
@@ -448,8 +449,8 @@
     <Content Include="ASSETS\js\jquery-3.5.1.min.js" />
     <Content Include="ASSETS\js\lazysizes.js" />
     <Content Include="ASSETS\js\main.js" />
-    <Content Include="ASSETS\js\Nhatjs.js" />
-    <Content Include="ASSETS\js\Nhatjs2.js" />
+    <Content Include="ASSETS\js\Nhat.js" />
+    <Content Include="ASSETS\js\Nhat2.js" />
     <Content Include="ASSETS\js\plugins.js" />
     <Content Include="ASSETS\js\popper.min.js" />
     <Content Include="ASSETS\js\vendor\instagram-feed.js" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
         // GET: Admin/Order
         public ActionResult Index()
         {
+            ViewBag.is_logined = HttpContext.Application["is_logined"];
             var result = db.TRANSACTIONs.ToList();
             return View(result);
         }
@@ -27,32 +29,27 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
             return RedirectToAction("~/Areas/Admin/Views/Order/Index.cshtml");
         }
 
-        [HttpPost]
-        public ActionResult AddReport(FormCollection fc)
+        public ActionResult Confirm_Order(string id)
         {
-            var tran_id = new SqlParameter("@tran_id", System.Data.SqlDbType.Int) { Value = TempData["tran_id"] };
-            var employee_id = new SqlParameter("@employee_id", System.Data.SqlDbType.Int) { Value = fc["employee_id"] };
-            var mem_id = new SqlParameter("@mem_id", System.Data.SqlDbType.Int) { Value = TempData["mem_id"] };
-            var amount = new SqlParameter("@amount", System.Data.SqlDbType.Int) { Value = TempData["amount"] };
-            var qty = new SqlParameter("@qty", System.Data.SqlDbType.Int) { Value = TempData["qty"] };
-            var product_id = new SqlParameter("@product_id", System.Data.SqlDbType.Int) { Value = TempData["product_id"] };
-            var date = new SqlParameter("@date", fc["date"]);
-            var result = db.REPORTs.SqlQuery("CheckReport @tran_id", tran_id).ToList();
-            if (result.Count() != 0)
-            {
-                ViewBag.Message = "Giao dịch này đã được báo cáo!";
-                var ret = db.TRANSACTIONs.ToList();
-                return View("~/Areas/Admin/Views/Order/Index.cshtml", ret);
-            }
+            var tran_id = new SqlParameter("@id", id);
+            var result = db.Database.ExecuteSqlCommand("exec confirm_TRANSACTION @id", tran_id);
+            return Content("1");
+        }
 
-            db.Database.ExecuteSqlCommand("AddReport @tran_id, @employee_id, @mem_id,  @amount, @qty, @product_id, @date",
-                                                    tran_id, employee_id, mem_id, amount, qty, product_id, date);
-            return RedirectToAction("Index");
+        public ActionResult Report(string id)
+        {
+            var tran_id = new SqlParameter("@id", id);
+            var tran_id_2 = new SqlParameter("@id_2", id);
+            var result = db.TRANSACTIONs.SqlQuery("get_TRANSACTION_from_transaction_id @id", tran_id).ToList();
+            var product = db.Database.SqlQuery<Order_Products>("get_PRODUCT_from_TRANSACTION @id_2", tran_id_2).ToList();
+            ViewBag.Product_List = product;
+            return View(result);
         }
 
         [HttpPost]
         public ActionResult Filter_Order()
         {
+
             var order_status = Request.Form["order_property"];
             List<TRANSACTION> order_list = new List<TRANSACTION>();
             var all_transaction = db.TRANSACTIONs.ToList();
@@ -66,4 +63,5 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
             return View("Index", order_list);
         }
     }
+
 }

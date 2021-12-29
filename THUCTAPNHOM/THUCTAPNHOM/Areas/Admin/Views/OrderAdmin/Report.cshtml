@@ -1,7 +1,11 @@
-﻿
+﻿@model List<THUCTAPNHOM.Models2.TRANSACTION>
 @{
     ViewBag.Title = "Report";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    var tran = Model[0];
 }
 
 <!--Body Content-->
@@ -9,78 +13,172 @@
     <!--Page Title-->
     <div class="page section-header text-center">
         <div class="page-title">
-            <div class="wrapper"><h1 class="page-width">Báo cáo đơn hàng</h1></div>
+            <div class="wrapper"><h1 class="page-width">Xác nhận đơn hàng</h1></div>
         </div>
     </div>
     <!--End Page Title-->
 
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6 main-col offset-md-3">
-        <div class="card">
-            <div class="card-header">
-                <strong>Information</strong>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 main-col">
+                <form action="#" method="post" class="cart style2">
+                    <table>
+                        <thead class="cart__row cart__header">
+                            <tr>
+                                <th colspan="1" class="text-center">Sản phẩm</th>
+                                <th class="text-center">Đơn giá</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-right">Tổng</th>
+                                <th class="action">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in (List<THUCTAPNHOM.Models2.Order_Products>)ViewBag.Product_List)
+                            {
+                                <tr class="cart__row border-bottom line1 cart-flex border-top">
+                                    <td class="cart__meta small--text-left cart-flex-item">
+                                        <div class="list-view-item__title">
+                                            <a href="#">@item.name</a>
+                                        </div>
+                                        <div class="cart__meta-text">
+                                            Color: <br>Size: @item.size<br>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price-wrapper cart-flex-item">
+                                        <span class="money">@item.price VND</span>
+                                    </td>
+                                    <td class="cart__update-wrapper cart-flex-item text-right">
+                                        <div class="cart__qty text-center">
+                                            <div class="qtyField">
+                                                <input class="cart__qty-input qty" type="text" name="updates[]" id="qty" value="@item.qty" pattern="[0-9]*">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right small--hide cart-price">
+                                        @{
+                                            int sum = 0;
+                                            sum = item.price * item.qty;
+                                        }
+                                        <div><span class="money">@sum VND</span></div>
+                                    </td>
+                                    <td class="text-center small--hide"><a href="#" class="btn btn--secondary cart__remove" title="Remove tem"><i class="icon icon anm anm-times-l"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+
+                        </tfoot>
+                    </table>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col" id="sum_money">
+                        <div class="solid-border">
+                            @{
+                                int total = 0;
+                                foreach (var item in (List<THUCTAPNHOM.Models2.Order_Products>)ViewBag.Product_List)
+                                {
+                                    total = total + item.price * item.qty;
+                                    
+                                }
+                            }
+                            <div class="row border-bottom pb-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Tổng tạm tính</span>
+                                <span class="col-12 col-sm-6 text-right"><span class="money">@total VND</span></span>
+                            </div>
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Giảm giá</span>
+                                <span class="col-12 col-sm-6 text-right">0 VND</span>
+                            </div>
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Phí vận chuyển</span>
+                                <span class="col-12 col-sm-6 text-right">Miễn phí vận chuyển</span>
+                            </div>
+                            <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Tổng thanh toán</strong></span>
+                                <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money" id="amount" name="amount">@total</span> VND</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+                        <div class="alert alert-success text-uppercase" role="alert">
+                            <i class="icon anm anm-truck-l icon-large"></i> &nbsp;Tinh trang don hang:
+                            @if (tran.status == 0)
+                            {
+                                <strong><span class="status--process">Chờ xử lý</span></strong>
+                            }
+                            else if (tran.status == 1)
+                            {
+                                <strong><span class="status--process">Đang giao hàng</span></strong>
+                            }
+                            else if (tran.status == 2)
+                            {
+                                <strong><span class="status--process">Đã Giao hàng</span></strong>
+                            }
+                            <span class="status--denied" hidden="" id="tran_status" name="tran_status">@tran.status</span>
+                        </div>
+                    </div>
+                </form>
             </div>
-            @using (Html.BeginForm("AddReport", "UserData", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <div class="card-body card-block">
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class=" form-control-label">ID</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="id" name="id" placeholder="Disabled" disabled="" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class=" form-control-label">User name</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="name" name="name" placeholder="Disabled" disabled="" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="email-input" class=" form-control-label">Email</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="username" name="username" placeholder="Disabled" disabled="" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class=" form-control-label">Passwoed</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="password" id="password" name="password" placeholder="Enter Email" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class=" form-control-label">Phone Number</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="phone" name="phone" placeholder="Password" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="text-input" class=" form-control-label">Address</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="address" name="address" placeholder="Disabled" disabled="" class="form-control">
-                        </div>
-                    </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 sm-margin-30px-bottom">
+                <div class="create-ac-content bg-light-gray padding-20px-all">
+                    <form>
+                        <fieldset>
+                            <h4 class="login-title mb-3">Thông tin khách hàng</h4>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                                    <label for="input-firstname">Tên khách hàng</label>
+                                    <input name="firstname" value="@tran.member_name" disabled="" id="input-firstname" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-email">E-Mail </label>
+                                    <input name="email" value="" id="input-email" disabled="" type="email" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-telephone">Số điện thoại </label>
+                                    <input name="telephone" value="@tran.member_phone_number" disabled="" id="input-telephone" type="tel" class="form-control">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-12 col-xl-12 required">
+                                    <label for="input-address-1">Địa chỉ giao hàng </label>
+                                    <input name="address_1" value="@tran.delivery" disabled="" id="input-address-1" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-postcode">Mã giảm giá</label>
+                                    <input name="postcode" value="" id="input-postcode" disabled="" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-postcode">Phương thức thanh toán </label>
+                                    <input name="postcode" value="Thanh toan qua the tin dung" id="input-postcode" type="text" class="form-control" disabled="">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                                    <label for="input-company">Ghi chú của khách hàng</label>
+                                    <textarea class="form-control resize-both" rows="3" disabled=""></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="fa fa-dot-circle-o"></i> Submit
-                    </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Cancel
-                    </button>
+
+                <div class="create-ac-content bg-light-gray padding-20px-all" id="emp_infor">
+                    <form method="post">
+                        <div class="order-button-payment">
+                            <button class="btn" id="confirm_button_id" value="@tran.transaction_id" type="button" ">Xác nhận đơn</button>
+                        </div>
+                    </form>
                 </div>
-            }
+            </div>
         </div>
     </div>
+
 </div>
 <!--End Body Content-->

@@ -156,6 +156,7 @@
     <Compile Include="Models2\ItemInCart.cs" />
     <Compile Include="Models2\ITEM_SOLD.cs" />
     <Compile Include="Models2\MEMBER.cs" />
+    <Compile Include="Models2\Mem_Cart.cs" />
     <Compile Include="Models2\Order_Products.cs" />
     <Compile Include="Models2\PRODUCT.cs" />
     <Compile Include="Models2\PRODUCT_GROUP.cs" />

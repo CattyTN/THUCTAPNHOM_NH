@@ -61,7 +61,7 @@ namespace THUCTAPNHOM.Areas.Sales.Controllers
                 if (result[0].role == 0)
                 {
                     ViewBag.user_role = 1;
-                    return View("~/Areas/Admin/Views/HomeAdmin/Index.cshtml");
+                    return RedirectToAction("Index", "HomeAdmin", new { area = "Admin" });
                 }
                 return View("~/Areas/Sales/Views/Home/Home.cshtml", productpluslist);
 

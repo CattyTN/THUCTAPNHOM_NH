@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using THUCTAPNHOM.Models2;
 
 namespace THUCTAPNHOM.Areas.Admin.Controllers
 {
-    public class CategoryAdminController : Controller
+    public class CategoryController : Controller
     {
         Shop db = new Shop();
         // GET: Admin/Category
+       
         public ActionResult Index()
         {
             ViewBag.user_logined = HttpContext.Application["user_logined"];
@@ -22,6 +22,7 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
         }
 
         [HttpPost]
+       
         public ActionResult AddCategory(FormCollection fc)
         {
             var cate = db.CATEGORies.ToList();
@@ -42,8 +43,9 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
             //var group_id = new SqlParameter("@group_id", fc["group_id"]);
 
             db.Database.ExecuteSqlCommand("EditCategory @id, @name", id, name);
-            ViewBag.user_logined = Session["user_logined"];
-            ViewBag.is_logined = Session["is_logined"];
+            ViewBag.user_logined = HttpContext.Application["user_logined"];
+            ViewBag.is_logined = HttpContext.Application["is_logined"];
+            ViewBag.user_name = HttpContext.Application["user_name"];
             var result = db.CATEGORies.ToList();
             return RedirectToAction("Index");
         }
@@ -53,18 +55,18 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
         {
             var id = new SqlParameter("@id", delete_id);
             db.Database.ExecuteSqlCommand("DeleteCategory @id", id);
-
-            ViewBag.user_logined = Session["user_logined"];
-            ViewBag.is_logined = Session["is_logined"];
+            ViewBag.user_logined = HttpContext.Application["user_logined"];
+            ViewBag.is_logined = HttpContext.Application["is_logined"];
+            ViewBag.user_name = HttpContext.Application["user_name"];
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         public ActionResult Filter(string filter)
         {
-            ViewBag.user_logined = Session["user_logined"];
-            ViewBag.is_logined = Session["is_logined"];
-
+            ViewBag.user_logined = HttpContext.Application["user_logined"];
+            ViewBag.is_logined = HttpContext.Application["is_logined"];
+            ViewBag.user_name = HttpContext.Application["user_name"];
             //  Lọc danh mục theo nhóm sản phẩm
             var type = new SqlParameter("@type", filter);
             if (type.Value.ToString() == "3")

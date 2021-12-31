@@ -48,7 +48,7 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
                 {
                     if (file != null)
                     {
-                        path = Path.Combine(Server.MapPath("~/Asset/Images"), Path.GetFileName(file.FileName));
+                        path = Path.Combine(Server.MapPath("~/ASSETS/Images"), Path.GetFileName(file.FileName));
                         file.SaveAs(path);
                     }
                 }
@@ -118,10 +118,10 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
             //  Lọc theo danh mục sản phẩm
             var category = db.CATEGORies.ToArray();
             var brand = db.BRANDs.ToList();
-            List<string> p1 = new List<string>();
+            Dictionary<int, string> p1 = new Dictionary<int, string>();
             foreach (var item in brand)
             {
-                p1.Add(item.brand_name);
+                p1.Add(item.brand_id, item.brand_name);
             }
             Dictionary<int, string> p = new Dictionary<int, string>();
             foreach (var item in category)
@@ -134,6 +134,7 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
             if (type.Value.ToString() == "0")
             {
                 var result = db.PRODUCTs.ToList();
+
                 return View("Index", result);
             }
             else

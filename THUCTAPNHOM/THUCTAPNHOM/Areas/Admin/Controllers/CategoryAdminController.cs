@@ -21,8 +21,7 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
             return View(result);
         }
 
-        [HttpPost]
-       
+        [HttpPost]       
         public ActionResult AddCategory(FormCollection fc)
         {
             var cate = db.CATEGORies.ToList();
@@ -42,11 +41,7 @@ namespace THUCTAPNHOM.Areas.Admin.Controllers
             var name = new SqlParameter("@name", category_name);
             //var group_id = new SqlParameter("@group_id", fc["group_id"]);
 
-            db.Database.ExecuteSqlCommand("EditCategory @id, @name", id, name);
-            ViewBag.user_logined = HttpContext.Application["user_logined"];
-            ViewBag.is_logined = HttpContext.Application["is_logined"];
-            ViewBag.user_name = HttpContext.Application["user_name"];
-            var result = db.CATEGORies.ToList();
+            db.Database.ExecuteSqlCommand("EditCategory @id, @name", id, name);            
             return RedirectToAction("Index");
         }
         

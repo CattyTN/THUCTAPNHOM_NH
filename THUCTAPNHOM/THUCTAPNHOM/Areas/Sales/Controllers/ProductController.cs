@@ -22,7 +22,7 @@ namespace THUCTAPNHOM.Areas.Sales.Controllers
 
             var result_product = db.Database.SqlQuery<PRODUCT>("exec selectallfromPRODUCT").ToList();
             int qty = result_product.Count();
-            for (int i = 0; i < qty; i++)
+            for (int i = 0; i < 12; i++)
             {
                 productlist.Add(result_product[i]);
             }

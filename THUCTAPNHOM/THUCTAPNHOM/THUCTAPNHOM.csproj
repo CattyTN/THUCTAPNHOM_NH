@@ -156,6 +156,7 @@
     <Compile Include="Models2\ItemInCart.cs" />
     <Compile Include="Models2\ITEM_SOLD.cs" />
     <Compile Include="Models2\MEMBER.cs" />
+    <Compile Include="Models2\Mem_Cart.cs" />
     <Compile Include="Models2\Order_Products.cs" />
     <Compile Include="Models2\PRODUCT.cs" />
     <Compile Include="Models2\PRODUCT_GROUP.cs" />
@@ -399,6 +400,7 @@
     <Content Include="ASSETS\images\default-skin.png" />
     <Content Include="ASSETS\images\favicon.png" />
     <Content Include="ASSETS\images\grid.jpg" />
+    <Content Include="ASSETS\images\jewellery-parallax.jpg" />
     <Content Include="ASSETS\images\list.jpg" />
     <Content Include="ASSETS\images\logo-text.svg" />
     <Content Include="ASSETS\images\logo.svg" />
@@ -450,7 +452,7 @@
     <Content Include="ASSETS\js\lazysizes.js" />
     <Content Include="ASSETS\js\main.js" />
     <Content Include="ASSETS\js\Nhat.js" />
-    <Content Include="ASSETS\js\Nhat2.js" />
+    <Content Include="ASSETS\js\nhatjs.js" />
     <Content Include="ASSETS\js\plugins.js" />
     <Content Include="ASSETS\js\popper.min.js" />
     <Content Include="ASSETS\js\vendor\instagram-feed.js" />

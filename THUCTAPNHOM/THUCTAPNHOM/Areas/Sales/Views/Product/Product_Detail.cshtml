@@ -352,6 +352,7 @@
                             {
                                 if (a.product_id == (k + 1))
                                 {
+                                    var star = a.sold/50 ;
                                     string m = ViewBag.is_logined + a.product_id.ToString();
                                     int? bu_percent2 = 100 - a.percent;
 
@@ -392,14 +393,23 @@
                                                 <span class="price">@a.price VND</span>
                                             </div>
                                             <!-- End product price -->
+                                            @{ 
+                                                <div class="product-review">
+                                                    @if(star < 5)
+                                                    {
+                                                        for(int o = 0; o < star; o++)
+                                                        {
 
-                                            <div class="product-review">
-                                                <i class="font-13 fa fa-star"></i>
-                                                <i class="font-13 fa fa-star"></i>
-                                                <i class="font-13 fa fa-star"></i>
-                                                <i class="font-13 fa fa-star-o"></i>
-                                                <i class="font-13 fa fa-star-o"></i>
-                                            </div>
+                                                                <i class="font-13 fa fa-star"></i>
+                                                        }
+                                                        for(int o = 0 ;o < 5-star ; o++)
+                                                        {
+                                                            <i class="font-13 fa fa-star-o"></i>
+                                                        }
+                                                    }
+                                                </div>
+                                            }
+
                                         </div>
                                         <!-- End product details -->
                                     </div>

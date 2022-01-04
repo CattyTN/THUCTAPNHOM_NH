@@ -410,7 +410,7 @@ function order_confirm(tran_id) {
         data: { id: tran_id },
         url: "/Admin/OrderAdmin/Confirm_Order",
         success: function (e) {
-            console.log("Chấp nhận đơn hàng!! Đơn sẽ được giao cho bên vận chuyển")
+            console.log(e)
         }
     })
 }
